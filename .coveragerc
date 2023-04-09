@@ -1,0 +1,4 @@
+[run]
+
+branch = True
+omit =  accounts/migrations/**, recipes/migrations/**, venv/*, **/*test*.py, manage.py, PROJECT/*

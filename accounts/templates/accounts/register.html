@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}Register | {% endblock title %}
+
+{% block content %}
+<br>
+{% include 'global/partials/_messages.html' %}
+    <div class="main-content center container">
+        <h1>Register</h1>
+    </div>
+
+    <form action="{% url 'accounts:register' %}" method="post" class="main-form">
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="form-group">
+            <div class="col-md">
+                <labelwww for="{{ field.id_for_label}}">{{ field.label }}:</label>
+                {{ field }}
+            </div>
+            
+            {% if field.help_text %}
+                {% for help in field.help_text %}{% endfor %}
+                <span class="text-muted help-text">{{ field.help_text }}</span>
+            {% endif %}
+
+            {% comment %} {{ field.errors }} {% endcomment %}
+            {% for error in field.errors %}
+            <div class="text-danger">
+                <small class="font-weight-bold">
+                    {{ error }}
+                </small>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-dark btn-submit btn-block btn-lg">
+                Registrar
+            </button>
+        </div>
+
+    </form>
+{% endblock content %}
