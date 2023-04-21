@@ -4,9 +4,9 @@
       {% for page in paginate_function.pagination %}
         <p class="ml-3">
           {% if page == page_obj.number %}
-            <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page }}{{ additional_url_query }}">{{ page }}</a></li>
           {% else %}
-            <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page }}{{ additional_url_query }}">{{ page }}</a></li>
           {% endif %}
         </p>
       {% endfor %}

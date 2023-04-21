@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View, ListView, DetailView
-from .models import Recipe, Category
 from django.contrib import messages
-from templates.static import site_messages
 from django.db.models import Q, Value
 from django.http import Http404
-from utils.pagination import make_pagination_range
+
+
+from .models import Recipe, Category
+from templates.static import site_messages
 
 
 class Index(ListView):
@@ -20,19 +21,6 @@ class Index(ListView):
         qs = qs.filter(is_published=True).order_by('-id')
 
         return qs
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        paginate_function = make_pagination_range(
-            page_range=context['paginator'],
-            qty_pages=6,
-            current_page=context['page_obj']
-        )
-
-        context['paginate_function'] = paginate_function
-
-        return context
 
 
 class CategoriesPage(View):
