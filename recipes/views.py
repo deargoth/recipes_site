@@ -8,16 +8,6 @@ from django.http import Http404
 from utils.pagination import make_pagination_range
 
 
-# def home(request):
-#     template_name = 'recipes/pages/index.html'
-
-#     recipes = Recipe.objects.filter(is_published=True).order_by('-id')
-
-#     return render(request, template_name, context={
-#         'recipes': recipes
-#     })
-
-
 class Index(ListView):
     model = Recipe
     context_object_name = 'recipes'
@@ -42,7 +32,6 @@ class Index(ListView):
 
         context['paginate_function'] = paginate_function
 
-        print(context)
         return context
 
 
