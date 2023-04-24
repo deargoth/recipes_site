@@ -1,11 +1,20 @@
 from django.test import TestCase
 from django.urls import resolve, reverse
+from unittest.mock import patch
+
 from recipes import views
 from recipes.models import User, Category, Recipe
 from .test_recipe_base import RecipeTestBase
 
 
 class RecipeViewsTest(RecipeTestBase):
+    def setUp(self):
+        self.recipe = self.make_recipe(author={'first_name': 'vinicius'})
+        self.recipe.is_published = False
+        self.recipe.save()
+
+        return super().setUp()
+
     def test_recipe_index_view_is_correct(self):
         view = resolve(reverse('recipes:index'))
         self.assertIs(view.func.view_class, views.Index)
@@ -26,7 +35,9 @@ class RecipeViewsTest(RecipeTestBase):
         )
 
     def test_recipe_index_loads_recipes(self):
-        self.make_recipe(author={'first_name': 'vinicius'})
+        self.recipe.is_published = True
+        self.recipe.save()
+
         response = self.client.get(reverse('recipes:index'))
         response_content = response.content.decode('utf-8')
         response_context_recipes = response.context['recipes']
@@ -35,3 +46,20 @@ class RecipeViewsTest(RecipeTestBase):
         self.assertIn('10 Minutos', response_content)
         self.assertIn('vinicius', response_content)
         self.assertEqual(len(response_context_recipes), 1)
+
+    def test_pagination_is_rendering_the_defined_value_of_recipes_per_page(self):
+        self.recipe.is_published = True
+        self.recipe.save()
+
+        for i in range(8):
+            self.recipe.id = None
+            self.recipe.name = f'Recipe of number {i}'
+            self.recipe.slug = None
+            self.recipe.save()
+
+        with patch('recipes.views.Index.paginate_by', new=3):
+            url = reverse('recipes:index')
+            response = self.client.get(url)
+
+            response_context = response.context['paginator_func']
+            self.assertEqual(response_context.get('total_pages'), 3)

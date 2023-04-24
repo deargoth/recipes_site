@@ -3,17 +3,22 @@ from django.views.generic import View, ListView, DetailView
 from django.contrib import messages
 from django.db.models import Q, Value
 from django.http import Http404
+from decouple import config
 
 
 from .models import Recipe, Category
 from templates.static import site_messages
+from utils.pagination import make_pagination
+
+
+PER_PAGE = int(config('PER_PAGE', 6))
 
 
 class Index(ListView):
     model = Recipe
     context_object_name = 'recipes'
     template_name = 'recipes/pages/index.html'
-    paginate_by = 3
+    paginate_by = PER_PAGE
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -22,29 +27,33 @@ class Index(ListView):
 
         return qs
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-class CategoriesPage(View):
+        pagination = make_pagination(context)
+
+        context['paginator_func'] = pagination
+
+        return context
+
+
+class CategoriesPage(Index):
     template_name = 'recipes/pages/categories.html'
 
-    def get(self, *args, **kwargs):
+    def get_queryset(self):
+        qs = super().get_queryset()
+
         category_kwargs = self.kwargs['category_name']
 
-        try:
-            category = Category.objects.get(name__exact=category_kwargs)
+        qs = qs.filter(category__name__iexact=category_kwargs)
+        return qs
 
-        except:
-            messages.error(self.request,
-                           site_messages.error_category_not_found)
-            return redirect('recipes:index')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        category_kwargs = self.kwargs['category_name']
 
-        recipes = Recipe.objects.filter(category=category)
-
-        self.context = {
-            'recipes': recipes,
-            'category_name': category,
-        }
-
-        return render(self.request, self.template_name, self.context)
+        context["category_name"] = category_kwargs
+        return context
 
 
 class Details(DetailView):
@@ -89,7 +98,6 @@ class Search(Index):
     model = Recipe
     template_name = 'recipes/pages/search.html'
     context_object_name = 'recipes'
-    paginate_by = 3
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -114,5 +122,6 @@ class Search(Index):
         search_term = self.request.GET.get('q', '').strip()
         context['page_title'] = f'Search for "{search_term}"'
         context['search_term'] = search_term
+        context['additional_url_query'] = f'&q={search_term}'
 
         return context
