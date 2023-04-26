@@ -5,3 +5,8 @@ __pycache__
 .coverage
 venv
 media
+accounts/__pycache__/forms.cpython-311.pyc
+accounts/__pycache__/urls.cpython-311.pyc
+accounts/__pycache__/views.cpython-311.pyc
+recipes/__pycache__/views.cpython-311.pyc
+utils/__pycache__/pagination.cpython-311.pyc
