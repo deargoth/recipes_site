@@ -75,15 +75,10 @@ class Details(View):
         pk = self.kwargs.get('pk')
 
         try:
-            recipe = Recipe.objects.get(pk=pk)
+            recipe = Recipe.objects.get(pk=pk, is_published=True)
         except:
             messages.error(self.request,
-                           site_messages.error_recipe_not_found)
-            return redirect('recipes:index')
-
-        if not recipe.is_published:
-            messages.error(self.request,
-                           site_messages.error_recipe_not_found)
+                           site_messages.error['recipe_not_found'])
             return redirect('recipes:index')
 
         self.context = {

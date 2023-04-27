@@ -11,6 +11,7 @@
     {% include 'global/partials/_menu.html' %}
     {% include 'global/partials/_header.html' %}
     <main class="main-content container">
+        {% include 'global/partials/_messages.html' %}
         {% block content %}{% endblock content %}
         {% include 'global/partials/_pagination.html' %}
     </main>
