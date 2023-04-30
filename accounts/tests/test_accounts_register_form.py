@@ -129,3 +129,14 @@ class UserRegisterFormIntegrationTest(DjangoTestCase):
         error_expected = 'Both password fields must be equal'
 
         self.assertIn(error_expected, response_context)
+
+    def test_register_user_can_log_into_the_created_account(self):
+        url = reverse("accounts:register")
+        response = self.client.post(url, self.form_data)
+
+        is_authenticated = self.client.login(
+            email='email@anyemail.com',
+            password='Str0ngP@ss'
+        )
+
+        self.assertTrue(is_authenticated)
