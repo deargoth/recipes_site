@@ -9,39 +9,44 @@
 {% include 'global/partials/_messages.html' %}
     <div class="main-content center container">
         <h1>Register</h1>
+        {% if request.user.is_superuser %}
+            <p class="lead">You are in this page as an admin!</p>
+        {% endif %}
     </div>
+    
+    <div class="main-content container">
+        <form action="{% url 'accounts:register' %}" method="post" class="main-form">
+            {% csrf_token %}
+            <div class="form-content form-content-grid">
+                {% for field in register_form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
 
-    <form action="{% url 'accounts:register' %}" method="post" class="main-form">
-        {% csrf_token %}
-
-        {% for field in form %}
-        <div class="form-group">
-            <div class="col-md">
-                <labelwww for="{{ field.id_for_label}}">{{ field.label }}:</label>
-                {{ field }}
+                        {% if field.help_text %}
+                            <p class="help-text">{{ field.help_text }}</p>
+                        {% endif %}
+                        
+                        {{ field.errors }}
+                    </div>                
+                {% endfor %}
             </div>
             
-            {% if field.help_text %}
-                {% for help in field.help_text %}{% endfor %}
-                <span class="text-muted help-text">{{ field.help_text }}</span>
+            {% if form.errors %}
+            <div class="form-content form-content-grid center">
+                <div class="form-group">
+                    <div class="message message-error">
+                        There are errors in the form, please fix them and send again.
+                    </div>
+                </div>
+            </div>
             {% endif %}
 
-            {% comment %} {{ field.errors }} {% endcomment %}
-            {% for error in field.errors %}
-            <div class="text-danger">
-                <small class="font-weight-bold">
-                    {{ error }}
-                </small>
+            <div class="form-content form-content-grid center">
+                <div class="form-group">
+                    <button type="submit">Register</button>
+                </div>
             </div>
-            {% endfor %}
-        </div>
-        {% endfor %}
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-dark btn-submit btn-block btn-lg">
-                Registrar
-            </button>
-        </div>
-
-    </form>
+        </form>
+    </div>
 {% endblock content %}
