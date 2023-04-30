@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
 from accounts import forms
 from templates.static import site_messages
@@ -39,4 +40,49 @@ class Register(View):
 
         messages.success(self.request,
                          site_messages.success['register_done'])
-        return redirect("recipes:index")
+        return redirect("accounts:login")
+
+
+class Login(View):
+    template_name = 'accounts/login.html'
+
+    def setup(self, request, *args, **kwargs):
+        super().setup(request, *args, **kwargs)
+
+        self.context = {
+            'login_form': forms.UserLoginForm(request.POST or None),
+        }
+        self.login_form = self.context['login_form']
+
+        self.render = render(request, self.template_name, self.context)
+
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated and not self.request.user.is_superuser:
+            messages.error(self.request,
+                           site_messages.error['already_logged'])
+            return redirect('recipes:index')
+
+        return self.render
+
+    def post(self, *args, **kwargs):
+        if not self.login_form.is_valid():
+            return self.render
+
+        email = self.request.POST.get('email')
+        password = self.request.POST.get('password')
+
+        is_authenticated = authenticate(self.request,
+                                        email=email,
+                                        password=password)
+
+        if not is_authenticated:
+            messages.error(self.request,
+                           site_messages.error['wrong_credentials'])
+            return redirect('accounts:login')
+
+        login(self.request,
+              is_authenticated)
+
+        messages.success(self.request,
+                         site_messages.success['successful_login'])
+        return redirect('recipes:index')
