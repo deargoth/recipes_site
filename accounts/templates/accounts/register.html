@@ -7,6 +7,7 @@
 {% block content %}
 <div class="main-content center container mt-3">
     <h1>Register</h1>
+    <p class="lead">Already have an account? <a href="{% url 'accounts:login' %}">Login here!</a></p>
     {% if request.user.is_superuser %}
         <p class="lead">You are in this page as an admin!</p>
     {% endif %}
