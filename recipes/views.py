@@ -56,18 +56,6 @@ class CategoriesPage(Index):
         return context
 
 
-class Details(DetailView):
-    model = Recipe
-    context_object_name = 'recipe'
-    pk_url_kwarg = 'pk'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['is_detail_page'] = True
-
-        return context
-
-
 class Details(View):
     template_name = 'recipes/pages/details.html'
 
