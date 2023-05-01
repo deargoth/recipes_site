@@ -61,11 +61,15 @@ class RecipeMixin:
         )
 
     def make_recipe_in_batch(self, quantity=9):
+        recipes = []
+
         for i in range(quantity):
-            self.recipe.id = None
-            self.recipe.name = f'Recipe of number {i}'
-            self.recipe.slug = None
-            self.recipe.save()
+            kwargs = {'name': f'Recipe of number {i}',
+                      'id': None,
+                      'slug': None, }
+            recipe = self.make_recipe(**kwargs)
+            recipes.append(recipe)
+        return recipes
 
 
 class RecipeTestBase(RecipeMixin, TestCase):
