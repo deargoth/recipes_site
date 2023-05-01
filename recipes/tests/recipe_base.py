@@ -64,9 +64,8 @@ class RecipeMixin:
         recipes = []
 
         for i in range(quantity):
-            kwargs = {'name': f'Recipe of number {i}',
-                      'id': None,
-                      'slug': None, }
+            kwargs = {'title': f'Recipe of number {i}',
+                      'author': {'email': f'email{i}@gmail.com'}}
             recipe = self.make_recipe(**kwargs)
             recipes.append(recipe)
         return recipes
