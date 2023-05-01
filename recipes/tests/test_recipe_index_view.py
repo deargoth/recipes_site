@@ -46,14 +46,7 @@ class RecipeIndexViewTest(RecipeTestBase):
         self.assertEqual(len(response_context_recipes), 1)
 
     def test_pagination_is_rendering_the_defined_value_of_recipes_per_page(self):
-        self.recipe.is_published = True
-        self.recipe.save()
-
-        for i in range(8):
-            self.recipe.id = None
-            self.recipe.name = f'Recipe of number {i}'
-            self.recipe.slug = None
-            self.recipe.save()
+        self.make_recipe_in_batch(8)
 
         with patch('recipes.views.Index.paginate_by', new=3):
             url = reverse('recipes:index')
