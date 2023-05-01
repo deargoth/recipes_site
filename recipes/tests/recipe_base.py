@@ -60,6 +60,13 @@ class RecipeMixin:
             last_name=last_name,
         )
 
+    def make_recipe_in_batch(self, quantity=9):
+        for i in range(quantity):
+            self.recipe.id = None
+            self.recipe.name = f'Recipe of number {i}'
+            self.recipe.slug = None
+            self.recipe.save()
+
 
 class RecipeTestBase(RecipeMixin, TestCase):
     def setUp(self):
