@@ -3,7 +3,7 @@ from django.urls import reverse
 from unittest.mock import patch
 
 from .pagination import make_pagination_range
-from recipes.tests.test_recipe_base import RecipeTestBase
+from recipes.tests.recipe_base import RecipeTestBase
 
 
 class TestPaginationFunction(TestCase):

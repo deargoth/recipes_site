@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.urls import reverse, resolve
 from recipes import views
 
-from .test_recipe_base import RecipeTestBase
+from .recipe_base import RecipeTestBase
 
 
 class RecipeSearchTests(RecipeTestBase):

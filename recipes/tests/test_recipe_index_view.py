@@ -2,7 +2,7 @@ from django.urls import resolve, reverse
 from unittest.mock import patch
 
 from recipes import views
-from .test_recipe_base import RecipeTestBase
+from .recipe_base import RecipeTestBase
 
 
 class RecipeIndexViewTest(RecipeTestBase):

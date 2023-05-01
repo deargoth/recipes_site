@@ -1,4 +1,4 @@
-from .test_recipe_base import RecipeTestBase
+from .recipe_base import RecipeTestBase
 from django.core.exceptions import ValidationError
 from parameterized import parameterized
 from recipes.models import Recipe

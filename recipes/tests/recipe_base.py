@@ -3,10 +3,7 @@ from recipes.models import Recipe, Category
 from accounts.models import User
 
 
-class RecipeTestBase(TestCase):
-    def setUp(self):
-        return super().setUp()
-
+class RecipeMixin:
     def make_recipe(
         self,
         author=None,
@@ -62,3 +59,8 @@ class RecipeTestBase(TestCase):
             first_name=first_name,
             last_name=last_name,
         )
+
+
+class RecipeTestBase(RecipeMixin, TestCase):
+    def setUp(self):
+        return super().setUp()
