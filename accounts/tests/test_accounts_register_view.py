@@ -52,9 +52,9 @@ class TestRegisterView(TestCase):
 
         self.assertRedirects(response, expected_url)
 
-    def test_register_view_redirect_to_home_if_register_is_complete(self):
+    def test_register_view_redirect_to_login_if_register_is_complete(self):
         url = reverse('accounts:register')
-        expected_url = reverse('recipes:index')
+        expected_url = reverse('accounts:login')
 
         response = self.client.post(url, self.form_data)
 
