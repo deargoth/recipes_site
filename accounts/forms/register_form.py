@@ -18,7 +18,8 @@ class UserRegisterForm(forms.ModelForm):
             self.fields['password2'], 'Repeat your password')
 
     email = forms.EmailField(
-        error_messages={'required': 'E-mail is required', },
+        error_messages={'required': 'E-mail is required',
+                        'invalid': 'The e-mail gotta be valid'},
         label="E-mail",
         help_text="The e-mail must be valid",
     )
