@@ -88,12 +88,3 @@ class Login(View):
         messages.success(self.request,
                          site_messages.success['successful_login'])
         return redirect('recipes:index')
-
-
-@login_required(login_url='accounts:login', redirect_field_name='next')
-def logout_view(request):
-    logout(request)
-
-    messages.success(request,
-                     site_messages.success['logout_done'])
-    return redirect('recipes:index')
