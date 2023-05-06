@@ -4,6 +4,7 @@ error = {
     'recipe_not_found': 'Recipe not found',
     'category_not_found': 'No category with this name was founded',
     'already_logged': "Ops! You're already logged",
+    'login_required': "Ops! You need to be logged to do this!",
     'wrong_credentials': 'Your e-mail or password are wrong. Fix them and try again',
 }
 
