@@ -14,5 +14,6 @@ success = {
     'register_done': 'You have been registered successfully! Now login in your account.',
     'successful_login': 'You have been login successfully, enjoy our site!',
     'logout_done': 'You have been successfully disconnected from your account.',
-    'recipe_updated': 'Your recipe was edited successfully!'
+    'recipe_updated': 'Your recipe was edited successfully!',
+    'recipe_created': 'Your recipe was send to review sucessfully!'
 }
