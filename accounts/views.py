@@ -165,4 +165,4 @@ class EditRecipe(View):
 
         messages.success(self.request,
                          site_messages.success['recipe_updated'])
-        return redirect('recipes:details', self.pk)
+        return redirect('accounts:edit_recipe', self.pk)
