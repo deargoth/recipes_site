@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.views import LogoutView
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from accounts import forms
+from recipes.models import Recipe
 from templates.static import site_messages
 
 
@@ -88,3 +88,27 @@ class Login(View):
         messages.success(self.request,
                          site_messages.success['successful_login'])
         return redirect('recipes:index')
+
+
+class Dashboard(View):
+    template_name = 'accounts/dashboard.html'
+
+    def get(self, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            messages.error(
+                self.request,
+                site_messages.error['login_required']
+            )
+            return redirect('accounts:login')
+
+        recipes = Recipe.objects.filter(
+            author=self.request.user, is_published=False)
+
+        count_recipes = len(recipes)
+
+        self.context = {
+            'recipes': recipes,
+            'count_recipes': count_recipes,
+        }
+
+        return render(self.request, self.template_name, self.context)

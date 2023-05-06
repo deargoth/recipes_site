@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}Dashboard | {% endblock title %}
+
+{% block content %}
+<div class="main-content center container mt-3">
+    <h1 class="mb-0">Dashboard ({{ request.user.get_full_name }})</h1>
+    <p class="lead">Here you can see your recipes (not published), modify your profile and see your informations!</p>
+
+</div>
+
+<div class="main-content container">
+    <div class="authors-dashboard-container">
+        <h3>Your recipes that are not published</h3>
+        <hr>
+        <ul>
+            {% for recipe in recipes %}
+            <li>
+                <a href="{% url 'recipes:details' recipe.id %}">{{ recipe.title }}</a>
+                <div>
+                    <a href="#" class="btn btn-primary">Editar</a>
+                    <a href="#" class="btn btn-danger">Deletar</a>
+                </div>
+            </li>
+            <hr>
+            {% empty %}
+            <li>
+                <p>You have no recipe yet! But you can create one by clicking <a href="#">here</a>!</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock content %}
