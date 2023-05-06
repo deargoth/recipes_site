@@ -129,7 +129,8 @@ class EditRecipe(View):
 
         self.context = {
             'form': forms.EditRecipeForm(data=request.POST or None,
-                                         instance=self.recipe),
+                                         files=request.FILES or None,
+                                         instance=self.recipe,),
             'recipe': self.recipe,
         }
         self.form = self.context['form']
