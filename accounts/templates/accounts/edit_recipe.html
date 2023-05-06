@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Dashboard | {% endblock title %}
+
+{% block content %}
+<div class="main-content center container mt-3">
+    <h1 class="mb-0">Editing recipe "{{ recipe.title }}"</h1>
+    <p class="lead">Here you are able to modify the recipe</p>
+
+</div>
+
+<div class="main-content container">
+    <form action="{% url 'accounts:edit_recipe' recipe.id %}" method="post">
+        {% csrf_token %}
+        
+        {% include 'global/partials/_recipe_form.html' %}
+
+        <div class="form-content form-content-grid center">
+            <div class="form-group">
+                <button type="submit">Edit</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}
