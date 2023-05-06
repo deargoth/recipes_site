@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 
 
-{% block title %}Editing "{{ recipe.title }}" | {% endblock title %}
+{% block title %}Creating a new recipe | {% endblock title %}
 
 {% block content %}
 <div class="main-content center container mt-3">
-    <h1 class="mb-0">Editing recipe "{{ recipe.title }}"</h1>
-    <p class="lead">Here you are able to modify the recipe</p>
+    <h1 class="mb-0">Creating a recipe</h1>
+    <p class="lead">Here you are able to create a new recipe</p>
 
 </div>
 
 <div class="main-content container">
     <form 
         class="main-form" 
-        action="{% url 'accounts:edit_recipe' recipe.id %}" 
+        action="#" 
         method="post" 
         enctype="multipart/form-data"
     >
@@ -23,7 +23,7 @@
 
         <div class="form-content form-content-grid center">
             <div class="form-group">
-                <button type="submit">Edit</button>
+                <button type="submit">Create</button>
             </div>
         </div>
     </form>
