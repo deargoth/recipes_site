@@ -11,7 +11,12 @@
 </div>
 
 <div class="main-content container">
-    <form action="{% url 'accounts:edit_recipe' recipe.id %}" method="post">
+    <form 
+        class="main-form" 
+        action="{% url 'accounts:edit_recipe' recipe.id %}" 
+        method="post" 
+        enctype="multipart/form-data"
+    >
         {% csrf_token %}
         
         {% include 'global/partials/_recipe_form.html' %}
