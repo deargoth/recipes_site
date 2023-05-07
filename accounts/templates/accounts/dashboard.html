@@ -20,10 +20,10 @@
             <li>
                 <a href="{% url 'recipes:details' recipe.id %}">{{ recipe.title }}</a>
                 <div>
-                    <a href="{% url 'accounts:edit_recipe' recipe.id %}" class="btn btn-primary">Editar</a>
+                    <a href="{% url 'accounts:edit_recipe' recipe.id %}" class="btn btn-primary">Edit</a>
                     <form class="inline-form form-delete" method="POST" action="{% url 'accounts:delete_recipe' recipe.id %}">
                         {% csrf_token %}
-                        <button class="btn btn-danger" type="submit">Deletar</button>
+                        <button class="btn btn-danger" type="submit">Delete</button>
                     </form>
                 </div>
             </li>
