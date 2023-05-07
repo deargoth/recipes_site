@@ -1,14 +1,17 @@
+from typing import Any, Dict
+from django import http
 from django.shortcuts import render, redirect
 from django.views.generic import View, ListView, DetailView
 from django.contrib import messages
 from django.db.models import Q, Value
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from decouple import config
+from django.forms.models import model_to_dict
 
 
 from .models import Recipe, Category
-from templates.static import site_messages
 from utils.pagination import make_pagination
+from accounts.models import User
 
 
 PER_PAGE = int(config('PER_PAGE', 6))
@@ -37,6 +40,16 @@ class Index(ListView):
         return context
 
 
+class IndexApi(Index):
+    def render_to_response(self, context, **response_kwargs):
+        recipes = self.get_context_data()['recipes']
+
+        return JsonResponse(
+            list(recipes.values()),
+            safe=False
+        )
+
+
 class CategoriesPage(Index):
     template_name = 'recipes/pages/categories.html'
 
@@ -56,31 +69,49 @@ class CategoriesPage(Index):
         return context
 
 
-class Details(View):
+class Details(DetailView):
+    model = Recipe
     template_name = 'recipes/pages/details.html'
+    context_object_name = 'recipe'
+    pk_url_kwarg = 'pk'
 
-    def get(self, *args, **kwargs):
-        pk = self.kwargs.get('pk')
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.filter(is_published=True)
+        return qs
 
-        try:
-            recipe = Recipe.objects.get(pk=pk)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            'is_detail_page': True
+        })
 
-        except:
-            messages.error(self.request,
-                           site_messages.error['recipe_not_found'])
-            return redirect('recipes:index')
+        return context
 
-        if recipe.is_published == False and recipe.author != self.request.user:
-            messages.error(self.request,
-                           site_messages.error['recipe_not_found'])
-            return redirect('recipes:index')
 
-        self.context = {
-            'recipe': recipe,
-            'is_detail_page': True,
-        }
+class DetailsApi(Details):
+    def render_to_response(self, context, **response_kwargs):
+        recipe = self.get_context_data()['recipe']
+        recipe_dict = model_to_dict(recipe)
 
-        return render(self.request, self.template_name, self.context)
+        recipe_dict['created_at'] = str(recipe.created_at)
+        recipe_dict['updated_at'] = str(recipe.updated_at)
+        recipe_dict['author'] = recipe.author.get_full_name()
+        recipe_dict['category'] = recipe.category.name
+
+        if recipe_dict.get('image'):
+            recipe_dict['image'] = self.request.build_absolute_uri(
+            ) + recipe_dict['image'].url[1:]
+
+        else:
+            recipe_dict['image'] = ''
+
+        del recipe_dict['is_published']
+
+        return JsonResponse(
+            recipe_dict,
+            safe=False,
+        )
 
 
 class Search(Index):
