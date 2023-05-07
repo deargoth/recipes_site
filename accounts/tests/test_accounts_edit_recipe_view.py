@@ -18,7 +18,7 @@ class TestEditRecipeView(RecipeTestBase):
     def test_edit_recipe_view_url_is_correct(self):
         url = reverse('accounts:edit_recipe', kwargs={'pk': self.recipe.pk})
         self.assertEqual(
-            url, f'/accounts/dashboard/editrecipe/{self.recipe.pk}')
+            url, f'/accounts/dashboard/recipe/edit/{self.recipe.pk}')
 
     def test_edit_recipe_template_view(self):
         self.client.login(email='admin@gmail.com', password='demodemo')
