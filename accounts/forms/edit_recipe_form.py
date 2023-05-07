@@ -1,4 +1,7 @@
 from django import forms
+from django.core.exceptions import ValidationError
+from collections import defaultdict
+
 
 from recipes.models import Recipe
 from utils.functions import add_attr
@@ -7,6 +10,8 @@ from utils.functions import add_attr
 class EditRecipeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        self._my_errors = defaultdict(list)
 
         add_attr(self.fields['preparation_steps'], 'class', 'span-2')
 
@@ -38,3 +43,35 @@ class EditRecipeForm(forms.ModelForm):
                 }
             ),
         }
+
+    def clean(self):
+        super_clean = super().clean()
+
+        cleaned_data = self.cleaned_data
+
+        title = cleaned_data.get('title')
+        description = cleaned_data.get('description')
+        preparation_steps = cleaned_data.get('preparation_steps')
+
+        if len(title) < 6:
+            self._my_errors['title'].append(
+                'Title must have at least 6 characters.')
+
+        if len(description) < 10:
+            self._my_errors['title'].append(
+                'Description must have at least 10 characters.')
+
+        if title == description:
+            self._my_errors['title'].append(
+                'The title cannot be equal to description')
+            self._my_errors['description'].append(
+                'The description cannot be equal to title')
+
+        if len(preparation_steps) < 20:
+            self._my_errors['title'].append(
+                'The preparation steps must have at least 20 characters.')
+
+        if self._my_errors:
+            raise ValidationError(self._my_errors)
+
+        return super_clean

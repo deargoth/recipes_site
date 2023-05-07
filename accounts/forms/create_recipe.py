@@ -1,4 +1,6 @@
 from django import forms
+from collections import defaultdict
+from django.core.exceptions import ValidationError
 
 from recipes.models import Recipe
 from utils.functions import add_attr, add_placeholder
@@ -7,6 +9,9 @@ from utils.functions import add_attr, add_placeholder
 class CreateRecipeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        self._my_errors = defaultdict(list)
+
         add_attr(self.fields['preparation_steps'], 'class', 'span-2')
         add_placeholder(self.fields['title'], 'Type here your title')
         add_placeholder(self.fields['description'],
@@ -50,3 +55,35 @@ class CreateRecipeForm(forms.ModelForm):
                 },
             ),
         }
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+
+        title = cleaned_data.get('title')
+        description = cleaned_data.get('description')
+        preparation_steps = cleaned_data.get('preparation_steps')
+
+        if title:
+            if len(title) < 6:
+                self._my_errors['title'].append(
+                    'Title must have at least 6 characters.')
+
+        if description:
+            if len(description) < 10:
+                self._my_errors['title'].append(
+                    'Description must have at least 10 characters.')
+
+        if preparation_steps:
+            if len(preparation_steps) < 20:
+                self._my_errors['title'].append(
+                    'The preparation steps must have at least 20 characters.')
+
+        if title and description:
+            if title == description:
+                self._my_errors['title'].append(
+                    'The title cannot be equal to description')
+                self._my_errors['description'].append(
+                    'The description cannot be equal to title')
+
+        if self._my_errors:
+            raise ValidationError(self._my_errors)
