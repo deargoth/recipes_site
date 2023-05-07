@@ -1,4 +1,4 @@
-from django.urls import render, redirect
+from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib import messages
 from django.http import Http404
