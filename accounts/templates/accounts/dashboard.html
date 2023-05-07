@@ -27,7 +27,9 @@
             <hr>
             {% empty %}
             <li>
-                <p>You have no recipe yet! But you can create one by clicking <a href="#">here</a>!</p>
+                <p>You have no recipe yet! But you can create one by clicking 
+                    <a href="{% url 'accounts:create_recipe' %}">here</a>!
+                </p>
             </li>
             {% endfor %}
         </ul>
