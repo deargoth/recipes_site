@@ -16,12 +16,11 @@ class RecipeDetailsViewTest(RecipeTestBase):
 
         self.assertEqual(response.status_code, 200)
 
-    def test_details_view_is_redirecting_to_index_if_recipe_isnt_published(self):
+    def test_details_view_is_returning_404_if_recipe_isnt_published(self):
         self.recipe.is_published = False
         self.recipe.save()
 
         url = reverse('recipes:details', kwargs={'pk': self.recipe.pk})
         response = self.client.get(url)
 
-        expected_url = reverse('recipes:index')
-        self.assertRedirects(response, expected_url)
+        self.assertEqual(response.status_code, 404)

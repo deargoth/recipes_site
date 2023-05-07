@@ -9,7 +9,7 @@ class RecipeURLsTest(TestCase):
 
     def test_recipe_details_url_is_correct(self):
         url = reverse('recipes:details', kwargs={'pk': 1})
-        self.assertEqual(url, '/details/1')
+        self.assertEqual(url, '/recipes/details/1')
 
     def test_recipe_category_url_is_correct(self):
         url = reverse('recipes:category', kwargs={'category_name': 'Lanches'})
