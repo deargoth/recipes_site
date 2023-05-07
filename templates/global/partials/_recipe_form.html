@@ -8,7 +8,9 @@
                 <p class="help-text">{{ field.help_text }}</p>
             {% endif %}
             
-            {{ field.errors }}
+            {% if field.errors %}
+                {{ field.errors }}
+            {% endif %}
         </div>
 
         {% if field.name == 'image' and field.value.url %}
