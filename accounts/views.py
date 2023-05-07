@@ -193,8 +193,9 @@ class CreateRecipe(View):
         return self.render
 
     def post(self, *args, **kwargs):
-        if not self.form.is_valid():
-            return self.render
+        if self.request.method == 'POST':
+            if not self.form.is_valid():
+                return self.render
 
         form = self.form.save(commit=False)
 
