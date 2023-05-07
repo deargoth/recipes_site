@@ -1,8 +1,10 @@
 from django.conf import settings
 from PIL import Image
 from django.db import models
-from accounts.models import User
 from django.utils.text import slugify
+from django.urls import reverse
+
+from accounts.models import User
 
 
 class Category(models.Model):
@@ -69,3 +71,6 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("recipes:details", kwargs={"pk": self.pk})
