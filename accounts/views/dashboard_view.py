@@ -17,7 +17,7 @@ class Dashboard(View):
             )
             return redirect('accounts:login')
 
-        recipes = Recipe.objects.filter(
+        recipes = Recipe.objects.values('title', 'id', 'is_published', 'author').filter(
             author=self.request.user, is_published=False)
 
         count_recipes = len(recipes)
