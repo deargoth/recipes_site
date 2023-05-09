@@ -5,7 +5,6 @@ app_name = 'recipes'
 
 urlpatterns = [
     path('', views.Index.as_view(), name="index"),
-    path('recipes/theory/', views.theory, name="theory"),
     path('recipes/api/v1/', views.IndexApi.as_view(), name="index_api"),
     path('recipes/<str:category_name>',
          views.CategoriesPage.as_view(), name="category"),
