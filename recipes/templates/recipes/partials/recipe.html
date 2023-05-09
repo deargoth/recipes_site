@@ -13,6 +13,11 @@
         <h2 class="recipe-title">
             <a href="{{ recipe.get_absolute_url }}">
                 {{ recipe.title }}
+                <p class="lead">
+                    {% if not recipe.is_published %}
+                    You are seeing this because you're a authorized user or the author of the recipe. (It's not published)
+                    {% endif %}
+                </p>
             </a>
         </h2>
     </div>
@@ -28,7 +33,7 @@
 
                 <i class="fas fa-user"></i>
                 {% if recipe.author.first_name %}
-                    {{ recipe.author.first_name }} {{ recipe.author.last_name }}
+                    {{ recipe.author_full_name }}
                 {% else %}
                     {{ recipe.author.username }}
                 {% endif %}
