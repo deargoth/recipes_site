@@ -18,7 +18,7 @@
         <ul>
             {% for recipe in recipes %}
             <li>
-                <a href="{{ recipe.get_absolute_url }}">{{ recipe.title }}</a>
+                <a href="{% url 'recipes:details' recipe.id %}">{{ recipe.title }}</a>
                 <div>
                     <a href="{% url 'accounts:edit_recipe' recipe.id %}" class="btn btn-primary">Edit</a>
                     <form class="inline-form form-delete" method="POST" action="{% url 'accounts:delete_recipe' recipe.id %}">
