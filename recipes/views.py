@@ -78,6 +78,12 @@ class Details(DetailView):
             Q(is_published=True) |
             Q(author__id=self.request.user.id)).select_related('author')
 
+        qs = qs.annotate(author_full_name=Concat(
+            F('author__first_name'),
+            Value(' '),
+            F('author__last_name'),
+        ))
+
         return qs
 
     def get_context_data(self, **kwargs):
