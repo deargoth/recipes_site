@@ -1,17 +1,13 @@
-from typing import Any, Dict
-from django import http
-from django.shortcuts import render, redirect
-from django.views.generic import View, ListView, DetailView
-from django.contrib import messages
-from django.db.models import Q, Value
+from django.views.generic import ListView, DetailView
+from django.shortcuts import render
+from django.db.models import Q, F, Value
+from django.db.models.functions import Concat
 from django.http import Http404, JsonResponse
 from decouple import config
 from django.forms.models import model_to_dict
 
-
-from .models import Recipe, Category
+from .models import Recipe
 from utils.pagination import make_pagination
-from accounts.models import User
 
 
 PER_PAGE = int(config('PER_PAGE', 6))
@@ -26,7 +22,8 @@ class Index(ListView):
     def get_queryset(self):
         qs = super().get_queryset()
 
-        qs = qs.filter(is_published=True).order_by('-id')
+        qs = qs.filter(is_published=True).order_by(
+            '-id').select_related('author', 'category')
 
         return qs
 
@@ -77,7 +74,10 @@ class Details(DetailView):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        qs = qs.filter(is_published=True)
+        qs = qs.filter(
+            Q(is_published=True) |
+            Q(author__id=self.request.user.id)).select_related('author')
+
         return qs
 
     def get_context_data(self, **kwargs):
