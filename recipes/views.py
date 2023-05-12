@@ -26,6 +26,8 @@ class Index(ListView):
         qs = qs.filter(is_published=True).order_by(
             '-id').select_related('author', 'category')
 
+        qs = qs.prefetch_related('author__profile')
+
         qs = qs.annotate(author_full_name=Concat(
             F('author__first_name'),
             Value(' '),
