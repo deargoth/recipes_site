@@ -3,7 +3,10 @@ from PIL import Image
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+from django.core.exceptions import ValidationError
 
+from collections import defaultdict
+from templates.static import site_messages
 from tag.models import Tag
 from accounts.models import User
 
@@ -60,6 +63,22 @@ class Recipe(models.Model):
             optimize=True,
             quality=50,
         )
+
+    def clean(self):
+        error_messages = defaultdict(list)
+
+        recipe_on_db = Recipe.objects.filter(
+            title__iexact=self.title
+        ).first()
+
+        if recipe_on_db:
+            if recipe_on_db.pk != self.pk:
+                error_messages['title'].append(
+                    site_messages.error['recipe_with_same_title']
+                )
+
+        if error_messages:
+            raise ValidationError(error_messages)
 
     def save(self, *args, **kwargs):
         if not self.slug:

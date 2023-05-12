@@ -6,7 +6,8 @@ error = {
     'already_logged': "Ops! You're already logged.",
     'login_required': "Ops! You need to be logged to do this!",
     'wrong_credentials': 'Your e-mail or password are wrong. Fix them and try again.',
-    'permission_required': "Ops! You don't have permission to see that."
+    'permission_required': "Ops! You don't have permission to see that.",
+    'recipe_with_same_title': "There is already a recipe with this title",
 }
 
 # Success messages to all the site
