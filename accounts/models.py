@@ -1,8 +1,10 @@
 import string
 from random import SystemRandom
 from collections import defaultdict
+from PIL import Image
 
 from django.db import models
+from django.conf import settings
 from django.utils.text import slugify
 from django.core.mail import send_mail
 from django.core.exceptions import ValidationError
@@ -83,6 +85,25 @@ class Profile(models.Model):
         upload_to='profile_photos/%Y/%m', blank=True, null=True)
     slug = models.CharField(max_length=255, blank=True, null=True)
 
+    @staticmethod
+    def resize_image(image, new_width=800):
+        image_full_path = settings.MEDIA_ROOT / image.name
+        image_pillow = Image.open(image_full_path)
+        original_width, original_height = image_pillow.size
+
+        if original_width <= new_width:
+            image_pillow.close()
+            return
+
+        new_height = round((new_width * original_height) / original_width)
+
+        new_image = image_pillow.resize((new_width, new_height), Image.LANCZOS)
+        new_image.save(
+            image_full_path,
+            optimize=True,
+            quality=50,
+        )
+
     def clean(self):
         error_messages = defaultdict(list)
         profile_slug = Profile.objects.filter(slug=self.slug).first()
@@ -111,6 +132,9 @@ class Profile(models.Model):
             self.biography = 'Nothing to see here'
 
         super().save(*args, **kwargs)
+
+        if self.image:
+            self.resize_image(self.image, 200)
 
     def __str__(self):
         return self.user.first_name
