@@ -100,7 +100,7 @@
                 <p>
                     Tags:
                     {% for tag in recipe.tags.all %}
-                        <a href="{% url 'recipes:tag' tag.slug %}">
+                        <a href="{% url 'recipes:tags' tag.slug %}">
                             {{ tag.name }}
                         </a>, 
                     {% endfor %}

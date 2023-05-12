@@ -7,6 +7,7 @@ from decouple import config
 from django.forms.models import model_to_dict
 
 from .models import Recipe
+from tag.models import Tag
 from utils.pagination import make_pagination
 
 
@@ -90,6 +91,8 @@ class Details(DetailView):
             F('author__last_name'),
         ))
 
+        qs = qs.prefetch_related('tags')
+
         return qs
 
     def get_context_data(self, **kwargs):
@@ -155,5 +158,30 @@ class Search(Index):
         context['page_title'] = f'Search for "{search_term}"'
         context['search_term'] = search_term
         context['additional_url_query'] = f'&q={search_term}'
+
+        return context
+
+
+class Tags(Index):
+    template_name = 'recipes/pages/tag.html'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        qs = qs.filter(tags__slug=self.kwargs.get('slug', '')).order_by('-id')
+
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        page_title = Tag.objects.get(slug=self.kwargs.get('slug', ''))
+
+        if not page_title:
+            page_title = 'No recipes founded | '
+
+        page_title = f'Tag "{page_title.name}" | '
+
+        context.update({
+            'page_title': page_title,
+        })
 
         return context

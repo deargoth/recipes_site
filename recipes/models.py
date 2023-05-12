@@ -3,7 +3,9 @@ from PIL import Image
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+from django.contrib.contenttypes.fields import GenericRelation
 
+from tag.models import Tag
 from accounts.models import User
 
 
@@ -33,6 +35,7 @@ class Recipe(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
+    tags = GenericRelation(Tag, related_query_name='recipes')
     author = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, blank=True)
     category = models.ForeignKey(

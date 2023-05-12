@@ -12,4 +12,5 @@ urlpatterns = [
     path('recipes/details/api/v1/<int:pk>',
          views.DetailsApi.as_view(), name="details_api"),
     path('recipes/search/', views.Search.as_view(), name="search"),
+    path('recipes/tags/<slug>', views.Tags.as_view(), name="tags"),
 ]
