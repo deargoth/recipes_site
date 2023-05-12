@@ -36,6 +36,8 @@
             </li>
             {% endfor %}
         </ul>
+
+        <h3 class="mt-5">Want to change your profile informations? <a href="{% url 'accounts:edit_profile' profile.slug %}">Click here!</a></h3>
     </div>
 </div>
 {% endblock content %}
