@@ -2,6 +2,7 @@ from django.views.generic import View
 from django.contrib import messages
 from django.shortcuts import render, redirect
 
+from accounts.models import Profile
 from templates.static import site_messages
 from recipes.models import Recipe
 
@@ -20,10 +21,13 @@ class Dashboard(View):
         recipes = Recipe.objects.values('title', 'id', 'is_published', 'author').filter(
             author=self.request.user, is_published=False)
 
+        profile = Profile.objects.get(user=self.request.user)
+
         count_recipes = len(recipes)
 
         self.context = {
             'recipes': recipes,
+            'profile': profile,
             'count_recipes': count_recipes,
         }
 
