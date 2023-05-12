@@ -28,7 +28,7 @@
             <span class="recipe-author-item">
                 
                 {% if recipe.author.profile %}
-                    {% comment %} <a href="{% url 'authors:profile' recipe.author.profile.id %}"> {% endcomment %}
+                    <a href="{% url 'accounts:profile' recipe.author.profile.slug %}">
                 {% endif %}
 
                 <i class="fas fa-user"></i>
