@@ -107,6 +107,9 @@ class Profile(models.Model):
 
         self.slug = slugify(self.slug)
 
+        if not self.biography:
+            self.biography = 'Nothing to see here'
+
         super().save(*args, **kwargs)
 
     def __str__(self):
