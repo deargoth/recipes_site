@@ -68,3 +68,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    biography = models.TextField(
+        default='Nothing to see here', blank=True, null=True)
+    image = models.ImageField(
+        upload_to='profile_photos/%Y/%m', blank=True, null=True)
+
+    def __str__(self):
+        return self.user.first_name
