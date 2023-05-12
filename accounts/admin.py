@@ -43,5 +43,5 @@ class UserAdmin(BaseUserAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'biography',)
-    list_display_links = ('id', 'user', 'biography')
+    list_display = ('id', 'user', 'slug',)
+    list_display_links = ('id', 'user', 'slug')
