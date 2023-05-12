@@ -19,4 +19,5 @@ success = {
     'recipe_updated': 'Your recipe was edited successfully!',
     'recipe_created': 'Your recipe was send to review sucessfully!',
     'recipe_deleted': 'Your recipe was deleted successfully.',
+    'profile_updated': 'Your profile was updated successfully!',
 }
