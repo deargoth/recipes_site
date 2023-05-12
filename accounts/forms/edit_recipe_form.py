@@ -19,7 +19,7 @@ class EditRecipeForm(forms.ModelForm):
         model = Recipe
         fields = '__all__'
         exclude = ('author', 'is_published',
-                   'preparation_steps_is_html', 'category')
+                   'preparation_steps_is_html', 'category', 'tags')
         widgets = {
             'servings_unit': forms.Select(
                 attrs={

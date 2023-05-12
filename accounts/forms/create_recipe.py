@@ -30,7 +30,7 @@ class CreateRecipeForm(forms.ModelForm):
         model = Recipe
         fields = '__all__'
         exclude = ('preparation_steps_is_html',
-                   'is_published', 'author', 'category',)
+                   'is_published', 'author', 'category', 'tags')
 
         widgets = {
             'servings_unit': forms.Select(
