@@ -10,6 +10,7 @@ urlpatterns = [
     path('login/', views.Login.as_view(), name="login"),
     path('logout/', LogoutView.as_view(next_page='accounts:login'), name="logout"),
     path('dashboard/', views.Dashboard.as_view(), name="dashboard"),
+    path('profile/<slug>', views.ProfileView.as_view(), name="profile"),
     path('dashboard/recipe/create/',
          views.CreateRecipe.as_view(), name="create_recipe"),
     path('dashboard/recipe/edit/<int:pk>',
