@@ -4,3 +4,4 @@ from .create_recipe_view import CreateRecipe
 from .delete_recipe_view import DeleteRecipe
 from .dashboard_view import Dashboard
 from .profile_view import ProfileView
+from .edit_profile_view import EditProfile
