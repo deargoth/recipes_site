@@ -5,6 +5,7 @@ from django.db.models.functions import Concat
 from django.http import Http404, JsonResponse
 from decouple import config
 from django.forms.models import model_to_dict
+from django.utils import translation
 
 from .models import Recipe
 from tag.models import Tag
@@ -40,8 +41,12 @@ class Index(ListView):
         context = super().get_context_data(**kwargs)
 
         pagination = make_pagination(context)
+        browser_language = translation.get_language()
 
-        context['paginator_func'] = pagination
+        context.update({
+            "paginator_func": pagination,
+            "html_language": browser_language,
+        })
 
         return context
 
