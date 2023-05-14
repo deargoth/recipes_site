@@ -10,7 +10,10 @@ class RecipeAdmin(admin.ModelAdmin):
 
     list_display_links = ('id', 'title')
     list_editable = ('is_published', )
-    autocomplete_fields = ('tags', )
+    autocomplete_fields = ('tags', ),
+    prepopulated_fields = {
+        'slug': ('title',),
+    }
 
 
 admin.site.register(models.Category)
