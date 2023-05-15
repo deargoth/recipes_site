@@ -15,7 +15,7 @@
                 {{ recipe.title }}
                 <p class="lead">
                     {% if not recipe.is_published %}
-                    You are seeing this because you're a authorized user or the author of the recipe. (It's not published)
+                    {% translate "You are seeing this because you're a authorized user or the author of the recipe. (It's not published)" %}
                     {% endif %}
                 </p>
             </a>

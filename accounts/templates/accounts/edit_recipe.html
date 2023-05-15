@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 
-{% block title %}Editing "{{ recipe.title }}" | {% endblock title %}
+{% block title %}{% translate "Editing" %} "{{ recipe.title }}" | {% endblock title %}
 
 {% block content %}
 <div class="main-content center container mt-3">
-    <h1 class="mb-0">Editing recipe "{{ recipe.title }}"</h1>
-    <p class="lead">Here you are able to modify the recipe</p>
+    <h1 class="mb-0">{% translate "Editing recipe" %} "{{ recipe.title }}"</h1>
+    <p class="lead">{% translate "Here you are able to modify the recipe" %}</p>
 
 </div>
 
@@ -23,7 +24,7 @@
 
         <div class="form-content form-content-grid center">
             <div class="form-group">
-                <button type="submit">Edit</button>
+                <button type="submit">{% translate "Edit" %}</button>
             </div>
         </div>
     </form>

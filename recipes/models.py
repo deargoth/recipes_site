@@ -1,11 +1,13 @@
-from django.conf import settings
-from PIL import Image
 from django.db import models
-from django.utils.text import slugify
 from django.urls import reverse
+from django.conf import settings
+from django.utils.text import slugify
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
+from PIL import Image
 from collections import defaultdict
+
 from templates.static import site_messages
 from tag.models import Tag
 from accounts.models import User
@@ -23,26 +25,27 @@ class Category(models.Model):
 
 
 class Recipe(models.Model):
-    title = models.CharField(max_length=65)
-    description = models.CharField(max_length=255)
+    title = models.CharField(max_length=65, verbose_name=_('Title'))
+    description = models.CharField(max_length=255, verbose_name=_('Description'))
     slug = models.SlugField(null=True, blank=True)
-    preparation_time = models.PositiveIntegerField()
-    preparation_time_unit = models.CharField(max_length=65)
-    servings = models.PositiveIntegerField()
-    servings_unit = models.CharField(max_length=65)
-    preparation_steps = models.TextField()
-    preparation_steps_is_html = models.BooleanField(default=False)
+    preparation_time = models.PositiveIntegerField(verbose_name=_('Preparation time'))
+    preparation_time_unit = models.CharField(max_length=65, verbose_name=_('Preparation time unit'))
+    servings = models.PositiveIntegerField(verbose_name=_('Servings'))
+    servings_unit = models.CharField(max_length=65, verbose_name=_('Servings unit'))
+    preparation_steps = models.TextField(verbose_name=_('Preparation steps'))
+    preparation_steps_is_html = models.BooleanField(default=False, verbose_name=_('Preparation steps is HTML'))
     image = models.ImageField(
-        upload_to='pictures/%Y/%m/%d', blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    is_published = models.BooleanField(default=False)
+        upload_to='pictures/%Y/%m/%d', blank=True, null=True, verbose_name=_('Image'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created at'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Updated at'))
+    is_published = models.BooleanField(default=False, verbose_name=_('Is published'))
     tags = models.ManyToManyField(Tag)
     author = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, blank=True)
+        User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('Autor'))
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True, blank=True,
-        default=None
+        default=None,
+        verbose_name=_('Category')
     )
 
     @staticmethod

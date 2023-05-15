@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 
-{% block title %}Editing my profile | {% endblock title %}
+{% block title %}{% translate "Editing my profile" %} | {% endblock title %}
 
 {% block content %}
 <div class="main-content center container mt-3">
-    <h1 class="mb-0">Editing my profile</h1>
-    <p class="lead">Here you are able to modify your profile</p>
+    <h1 class="mb-0">{% translate "Editing my profile" %}</h1>
+    <p class="lead">{% translate "Here you are able to modify your profile" %}</p>
 
 </div>
 
@@ -68,7 +69,7 @@
         <div class="form-content form-content-grid center">
             <div class="form-group">
                 <div class="message message-error">
-                    There are errors in the form, please fix them and send again.
+                    {% translate "There are errors in the form, please fix them and send again." %}
                 </div>
             </div>
         </div>
@@ -76,7 +77,7 @@
         
         <div class="form-content form-content-grid center">
             <div class="form-group">
-                <button type="submit">Edit</button>
+                <button type="submit">{% translate "Edit" %}</button>
             </div>
         </div>
     </form>

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+{% load i18n %}
 
 
 {% block title %}Login | {% endblock title %}
@@ -7,9 +7,9 @@
 {% block content %}
 <div class="main-content center container mt-3">
     <h1>Login</h1>
-    <p class="lead">Doesn't have an account yet? <a href="{% url 'accounts:register' %}">Register here!</a></p>
+    <p class="lead">{% translate "Doesn't have an account yet?" %} <a href="{% url 'accounts:register' %}">{% translate "Register here!" %}</a></p>
     {% if request.user.is_superuser %}
-        <p class="lead">You are in this page as an admin!</p>
+        <p class="lead">{% translate "You are in this page as an admin!" %}</p>
     {% endif %}
 </div>
 
@@ -35,7 +35,7 @@
         <div class="form-content form-content-grid center">
             <div class="form-group">
                 <div class="message message-error">
-                    There are errors in the form, please fix them and send again.
+                    {% translate "There are errors in the form, please fix them and send again." %}
                 </div>
             </div>
         </div>

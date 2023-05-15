@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+{% load i18n %}
 
 
-{% block title %}Profile of {{ profile.user.first_name }} {{ profile.user.last_name }} | {% endblock title %}
+{% block title %}{% translate "Profile of" %} {{ profile.user.first_name }} {{ profile.user.last_name }} | {% endblock title %}
 
 {% block content %}
 <div class="main-content center container mt-3">
-    <h1 class="mb-0">Profile of {{ profile.user.first_name }} {{ profile.user.last_name }}</h1>
+    <h1 class="mb-0">{% translate "Profile of" %} {{ profile.user.first_name }} {{ profile.user.last_name }}</h1>
     {% if profile.image %}
     <div class="mt-3">
         <img src="{{ profile.image.url }}" alt="Photo of {{ profile.user.first_name }} {{ profile.user.last_name }}">

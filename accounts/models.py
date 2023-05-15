@@ -80,9 +80,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     biography = models.TextField(
-        default='Nothing to see here', blank=True, null=True)
+        default='Nothing to see here', blank=True, null=True, verbose_name=_('Biography'))
     image = models.ImageField(
-        upload_to='profile_photos/%Y/%m', blank=True, null=True)
+        upload_to='profile_photos/%Y/%m', blank=True, null=True, verbose_name=_('Image'))
     slug = models.CharField(max_length=255, blank=True, null=True)
 
     @staticmethod

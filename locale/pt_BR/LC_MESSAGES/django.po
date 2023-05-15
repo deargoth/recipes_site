@@ -1,0 +1,543 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#: templates/global/partials/_search.html:7
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-15 16:15-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: accounts/admin.py:19
+msgid "Personal info"
+msgstr ""
+
+#: accounts/admin.py:20
+msgid "Permissions"
+msgstr ""
+
+#: accounts/admin.py:29
+msgid "Important dates"
+msgstr ""
+
+#: accounts/forms/author_form.py:13
+msgid "The first name must not be empty"
+msgstr "O primeiro nome não pode estar vazio"
+
+#: accounts/forms/author_form.py:17
+msgid "The last name must not be empty"
+msgstr "O último nome não pode estar vazio"
+
+#: accounts/forms/create_recipe.py:18
+msgid "Type here your title"
+msgstr "Digite aqui o título"
+
+#: accounts/forms/create_recipe.py:20
+msgid "Type here the description of the recipe"
+msgstr "Digite aqui a descrição da receita"
+
+#: accounts/forms/create_recipe.py:22
+msgid "In minutes or hours, you choose!"
+msgstr "Em minutos ou horas, você escolhe!"
+
+#: accounts/forms/create_recipe.py:24
+msgid "In people, portions or plates"
+msgstr "Em pessoas, porções ou pratos"
+
+#: accounts/forms/create_recipe.py:40 accounts/forms/edit_recipe_form.py:31
+msgid "People"
+msgstr "Pessoas"
+
+#: accounts/forms/create_recipe.py:41 accounts/forms/edit_recipe_form.py:30
+msgid "Portions"
+msgstr "Porções"
+
+#: accounts/forms/create_recipe.py:42
+msgid "Plates"
+msgstr "Pratos"
+
+#: accounts/forms/create_recipe.py:50
+msgid "Minute(s)"
+msgstr "Minuto(s)"
+
+#: accounts/forms/create_recipe.py:51
+msgid "Hour(s)"
+msgstr "Hora(s)"
+
+#: accounts/forms/create_recipe.py:71 accounts/forms/edit_recipe_form.py:59
+msgid "Title must have at least 6 characters."
+msgstr "O título precisa ter no mínimo 6 caracteres."
+
+#: accounts/forms/create_recipe.py:76 accounts/forms/edit_recipe_form.py:63
+msgid "Description must have at least 10 characters."
+msgstr "A descrição precisa ter no mínimo 10 caracteres."
+
+#: accounts/forms/create_recipe.py:81 accounts/forms/edit_recipe_form.py:73
+msgid "The preparation steps must have at least 20 characters."
+msgstr "Os passos de preparação precisam ter no mínimo 20 caracteres"
+
+#: accounts/forms/create_recipe.py:86 accounts/forms/edit_recipe_form.py:67
+msgid "The title cannot be equal to description"
+msgstr "O título não pode ser igual a descrição"
+
+#: accounts/forms/create_recipe.py:88 accounts/forms/edit_recipe_form.py:69
+msgid "The description cannot be equal to title"
+msgstr "A descrição não pode ser igual ao titulo"
+
+#: accounts/forms/edit_recipe_form.py:32
+msgid "Pieces"
+msgstr "Pedaços"
+
+#: accounts/forms/edit_recipe_form.py:37
+msgid "Minutes"
+msgstr "Minutos"
+
+#: accounts/forms/edit_recipe_form.py:38
+msgid "Hours"
+msgstr "Horas"
+
+#: accounts/forms/login_form.py:11
+msgid "Type your e-mail"
+msgstr "Digite seu e-mail"
+
+#: accounts/forms/login_form.py:12 accounts/forms/register_form.py:17
+msgid "Type your password"
+msgstr "Digite sua senha"
+
+#: accounts/forms/register_form.py:13
+msgid "Your e-mail"
+msgstr "Seu e-mail"
+
+#: accounts/forms/register_form.py:19
+msgid "Repeat your password"
+msgstr "Repita sua senha"
+
+#: accounts/forms/register_form.py:22
+msgid "E-mail is required"
+msgstr "O e-mail é obrigatório"
+
+#: accounts/forms/register_form.py:23
+msgid "The e-mail gotta be valid"
+msgstr "O e-mail precisa ser válido"
+
+#: accounts/forms/register_form.py:25
+msgid "The e-mail must be valid"
+msgstr "O e-mail precisa ser válido"
+
+#: accounts/forms/register_form.py:29
+msgid "Write your first name, please"
+msgstr "Digite seu primeiro nome, por favor"
+
+#: accounts/forms/register_form.py:30
+msgid "Your first name must have at least 3 characters"
+msgstr "Seu primeiro nome precisa ter no mínimo 3 caracteres"
+
+#: accounts/forms/register_form.py:31
+msgid "Your first name must have a maximum of 100 characters"
+msgstr "Seu primeiro nome deve ter no máximo 100 caracteres"
+
+#: accounts/forms/register_form.py:32
+msgid "First name"
+msgstr "Primeiro nome"
+
+#: accounts/forms/register_form.py:33
+msgid ""
+"Your first name must have at least 3 characters and a maximum of 100 "
+"characters"
+msgstr "Seu primeiro nome precisa ter no mínimo 3 caracteres e no máximo 100 caracteres"
+
+#: accounts/forms/register_form.py:38
+msgid "Write your last name, please"
+msgstr "Digite seu último nome, por favor"
+
+#: accounts/forms/register_form.py:39
+msgid "Your last name must have at least 3 characters"
+msgstr "Seu último nome precisa ter pelo menos 3 caracteres"
+
+#: accounts/forms/register_form.py:40
+msgid "Your last name must have a maximum of 100 characters"
+msgstr "Seu último nome deve ter no máximo 100 caracteres"
+
+#: accounts/forms/register_form.py:41
+msgid "Last name"
+msgstr "Último nome"
+
+#: accounts/forms/register_form.py:42
+msgid ""
+"Your last name must have at least 3 characters and a maximum of 100 "
+"characters"
+msgstr "Seu último nome deve ter no mínimo 3 caracteres e no máximo 100 caracteres"
+
+#: accounts/forms/register_form.py:47
+msgid "The password must not be empty"
+msgstr "A senha não pode estar vazia"
+
+#: accounts/forms/register_form.py:49
+msgid "Password"
+msgstr "Senha"
+
+#: accounts/forms/register_form.py:51
+msgid ""
+"Password must have at least one uppercase letter, one lowercase letter and "
+"one number. The length should be at least 8 characters."
+msgstr ""
+"A senha precisa ter pelo menos uma letra maiúscula, uma letra minúscula e um número. "
+"Deve ter no mínimo 8 caracteres."
+
+#: accounts/forms/register_form.py:59
+msgid "Please, repeat your password"
+msgstr "Repita sua senha, por favor"
+
+#: accounts/forms/register_form.py:61
+msgid "Confirmation of Password"
+msgstr "Confirmação da senha"
+
+#: accounts/forms/register_form.py:62
+msgid "Type your password again to confirm"
+msgstr "Digite sua senha de novo para confirmar"
+
+#: accounts/forms/register_form.py:81
+msgid "Both password fields must be equal"
+msgstr "As duas senhas precisam estar iguais"
+
+#: accounts/models.py:20
+msgid "email address"
+msgstr ""
+
+#: accounts/models.py:21
+msgid "first name"
+msgstr ""
+
+#: accounts/models.py:22
+msgid "last name"
+msgstr ""
+
+#: accounts/models.py:23
+msgid "date joined"
+msgstr ""
+
+#: accounts/models.py:24
+msgid "active"
+msgstr ""
+
+#: accounts/models.py:26
+msgid "admin status"
+msgstr ""
+
+#: accounts/models.py:29
+msgid "Designates whether the user can log into this admin site."
+msgstr ""
+
+#: accounts/models.py:38
+msgid "user"
+msgstr ""
+
+#: accounts/models.py:39
+msgid "users"
+msgstr ""
+
+#: accounts/models.py:83
+msgid "Biography"
+msgstr "Biografia"
+
+#: accounts/models.py:85 recipes/models.py:38
+msgid "Image"
+msgstr "Imagem"
+
+#: accounts/templates/accounts/create_recipe.html:5
+msgid "Creating a new recipe"
+msgstr "Criando uma nova receita"
+
+#: accounts/templates/accounts/create_recipe.html:9
+msgid "Creating a recipe"
+msgstr "Criando uma receita"
+
+#: accounts/templates/accounts/create_recipe.html:10
+msgid "Here you are able to create a new recipe"
+msgstr "Aqui você pode criar novas receitas"
+
+#: accounts/templates/accounts/create_recipe.html:27
+msgid "Create"
+msgstr "Criar"
+
+#: accounts/templates/accounts/dashboard.html:10
+msgid ""
+"Here you can see your recipes (not published), modify your profile and see "
+"your informations!"
+msgstr "Aqui você pode ver suas receitas (não publicadas), modificar seu perfil e "
+"ver suas informações!"
+
+#: accounts/templates/accounts/dashboard.html:16
+msgid "Your recipes that are not published"
+msgstr "Suas receitas que não estão publicadas"
+
+#: accounts/templates/accounts/dashboard.html:23
+#: accounts/templates/accounts/edit_profile.html:79
+#: accounts/templates/accounts/edit_recipe.html:26
+msgid "Edit"
+msgstr "Editar"
+
+#: accounts/templates/accounts/dashboard.html:26
+msgid "Delete"
+msgstr "Deletar"
+
+#: accounts/templates/accounts/dashboard.html:33
+msgid "You have no recipe yet! But you can create one by clicking"
+msgstr "Você ainda não tem nenhuma receita! Mas você pode criar uma clicando"
+
+#: accounts/templates/accounts/dashboard.html:34
+msgid "here"
+msgstr "aqui"
+
+#: accounts/templates/accounts/dashboard.html:40
+msgid "Want to change your profile informations?"
+msgstr "Quer mudar suas informações do perfil?"
+
+#: accounts/templates/accounts/dashboard.html:40
+msgid "Click here!"
+msgstr "Clique aqui!"
+
+#: accounts/templates/accounts/edit_profile.html:4
+#: accounts/templates/accounts/edit_profile.html:8
+msgid "Editing my profile"
+msgstr "Editando meu perfil"
+
+#: accounts/templates/accounts/edit_profile.html:9
+msgid "Here you are able to modify your profile"
+msgstr "Aqui você pode modificar seu perfil"
+
+#: accounts/templates/accounts/edit_profile.html:71
+#: accounts/templates/accounts/login.html:38
+#: accounts/templates/accounts/register.html:38
+#: templates/global/partials/_recipe_form.html:28
+msgid "There are errors in the form, please fix them and send again."
+msgstr "Existem erros no formulário, arrume-os e envie novamente, por favor."
+
+#: accounts/templates/accounts/edit_recipe.html:4
+msgid "Editing"
+msgstr "Editando"
+
+#: accounts/templates/accounts/edit_recipe.html:8
+msgid "Editing recipe"
+msgstr "Editando uma receita"
+
+#: accounts/templates/accounts/edit_recipe.html:9
+msgid "Here you are able to modify the recipe"
+msgstr "Aqui você pode modificar receitas"
+
+#: accounts/templates/accounts/login.html:10
+msgid "Doesn't have an account yet?"
+msgstr "Ainda não tem sua conta?"
+
+#: accounts/templates/accounts/login.html:10
+msgid "Register here!"
+msgstr "Se registre aqui!"
+
+#: accounts/templates/accounts/login.html:12
+#: accounts/templates/accounts/register.html:12
+msgid "You are in this page as an admin!"
+msgstr "Você está nessa página como um administrador!"
+
+#: accounts/templates/accounts/profile.html:5
+#: accounts/templates/accounts/profile.html:9
+msgid "Profile of"
+msgstr "Perfil de"
+
+#: accounts/templates/accounts/register.html:5
+#: accounts/templates/accounts/register.html:9
+#: accounts/templates/accounts/register.html:46
+#: templates/global/partials/_menu.html:22
+msgid "Register"
+msgstr "Registrar"
+
+#: accounts/templates/accounts/register.html:10
+msgid "Already have an account?"
+msgstr "Já tem uma conta?"
+
+#: accounts/templates/accounts/register.html:10
+msgid "Login here!"
+msgstr "Logue aqui!"
+
+#: recipes/models.py:28
+msgid "Title"
+msgstr "Título"
+
+#: recipes/models.py:29
+msgid "Description"
+msgstr "Descrição"
+
+#: recipes/models.py:31
+#, fuzzy
+#| msgid "Preparation"
+msgid "Preparation time"
+msgstr "Preparação"
+
+#: recipes/models.py:32
+#, fuzzy
+#| msgid "Preparation"
+msgid "Preparation time unit"
+msgstr "Preparação"
+
+#: recipes/models.py:33 recipes/templates/recipes/partials/recipe.html:75
+msgid "Servings"
+msgstr "Porções"
+
+#: recipes/models.py:34
+#, fuzzy
+#| msgid "Servings"
+msgid "Servings unit"
+msgstr "Porções"
+
+#: recipes/models.py:35
+#, fuzzy
+#| msgid "Preparation"
+msgid "Preparation steps"
+msgstr "Preparação"
+
+#: recipes/models.py:36
+#, fuzzy
+#| msgid "Preparation"
+msgid "Preparation steps is HTML"
+msgstr "Preparação"
+
+#: recipes/models.py:39
+msgid "Created at"
+msgstr "Criado em"
+
+#: recipes/models.py:40
+msgid "Updated at"
+msgstr "Atualizado em"
+
+#: recipes/models.py:41
+msgid "Is published"
+msgstr "Está publicada"
+
+#: recipes/models.py:44
+msgid "Autor"
+msgstr "Autor"
+
+#: recipes/models.py:48
+msgid "Category"
+msgstr "Categoria"
+
+#: recipes/templates/recipes/pages/index.html:13
+msgid "No recipes found here 😢"
+msgstr "Nenhuma receita foi achada aqui 😢"
+
+#: recipes/templates/recipes/partials/recipe.html:18
+msgid ""
+"You are seeing this because you're a authorized user or the author of the "
+"recipe. (It's not published)"
+msgstr "Você está vendo isso porque é um usuário autorizado ou porque é o autor"
+"da receita. (Não está publicada)"
+
+#: recipes/templates/recipes/partials/recipe.html:69
+msgid "Preparation"
+msgstr "Preparação"
+
+#: recipes/templates/recipes/partials/recipe.html:86
+msgid "read more"
+msgstr "Leia mais"
+
+#: recipes/views.py:187
+msgid "No recipes founded | "
+msgstr "Nenhuma receita achada | "
+
+#: tag/models.py:11
+msgid "Name"
+msgstr "Nome"
+
+#: templates/base.html:7 templates/global/partials/_header.html:8
+msgid "Recipes"
+msgstr "Receitas"
+
+#: templates/global/partials/_menu.html:14
+msgid "Home"
+msgstr "Página inicial"
+
+#: templates/global/partials/_menu.html:15
+msgid "New recipe"
+msgstr "Nova receita"
+
+#: templates/global/partials/_menu.html:18
+msgid "Logout"
+msgstr "Deslogar"
+
+#: templates/global/partials/_pagination.html:5
+msgid "First"
+msgstr "Primeira"
+
+#: templates/global/partials/_pagination.html:28
+msgid "Last"
+msgstr "Última"
+
+#: templates/static/site_messages.py:5
+msgid "Recipe not found."
+msgstr "Receita não encontrada."
+
+#: templates/static/site_messages.py:6
+msgid "No category with this name was founded."
+msgstr "Nenhuma categoria com esse nome foi encontrada."
+
+#: templates/static/site_messages.py:7
+msgid "Ops! You're already logged."
+msgstr "Ops! Você já está logado."
+
+#: templates/static/site_messages.py:8
+msgid "Ops! You need to be logged to do this!"
+msgstr "Ops! Você precisa estar logado para fazer isso!"
+
+#: templates/static/site_messages.py:9
+msgid "Your e-mail or password are wrong. Fix them and try again."
+msgstr "Seu e-mail ou senha estão errados. Arrume-os e tente novamente"
+
+#: templates/static/site_messages.py:10
+msgid "Ops! You don't have permission to see that."
+msgstr "Ops! Você não tem permissão para ver isso."
+
+#: templates/static/site_messages.py:11
+msgid "There is already a recipe with this title"
+msgstr "Já existe uma receita com esse título."
+
+#: templates/static/site_messages.py:12
+msgid "This slug it's already in use"
+msgstr "Essa slug já está em uso"
+
+#: templates/static/site_messages.py:17
+msgid "You have been registered successfully! Now login in your account."
+msgstr "Você foi registrado com sucesso! Agora logue em sua conta."
+
+#: templates/static/site_messages.py:18
+msgid "You have been login successfully, enjoy our site!"
+msgstr "Você fez login com sucesso, aproveite nosso site!"
+
+#: templates/static/site_messages.py:19
+msgid "You have been successfully disconnected from your account."
+msgstr "Você foi desconectado com sucesso de sua conta."
+
+#: templates/static/site_messages.py:20
+msgid "Your recipe was edited successfully!"
+msgstr "Sua receita foi modificada com sucesso!"
+
+#: templates/static/site_messages.py:21
+msgid "Your recipe was send to review sucessfully!"
+msgstr "Sua receita foi enviada para revisão com sucesso!"
+
+#: templates/static/site_messages.py:22
+msgid "Your recipe was deleted successfully."
+msgstr "Sua receita foi deletada com sucesso."
+
+#: templates/static/site_messages.py:23
+msgid "Your profile was updated successfully!"
+msgstr "Seu perfil foi atualizado com sucesso!"

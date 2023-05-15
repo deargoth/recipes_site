@@ -1,12 +1,14 @@
 import string
 
 from django.db import models
-from random import SystemRandom
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
+
+from random import SystemRandom
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, verbose_name=_('Name'))
     slug = models.SlugField(unique=True, blank=True)
 
     def save(self, *args, **kwargs):

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+{% load i18n %}
 
 
 {% block title %}Dashboard | {% endblock title %}
@@ -7,37 +7,37 @@
 {% block content %}
 <div class="main-content center container mt-3">
     <h1 class="mb-0">Dashboard ({{ request.user.get_full_name }})</h1>
-    <p class="lead">Here you can see your recipes (not published), modify your profile and see your informations!</p>
+    <p class="lead">{% translate "Here you can see your recipes (not published), modify your profile and see your informations!" %}</p>
 
 </div>
 
 <div class="main-content container">
     <div class="authors-dashboard-container">
-        <h3>Your recipes that are not published</h3>
+        <h3>{% translate "Your recipes that are not published" %}</h3>
         <hr>
         <ul>
             {% for recipe in recipes %}
             <li>
                 <a href="{% url 'recipes:details' recipe.id %}">{{ recipe.title }}</a>
                 <div>
-                    <a href="{% url 'accounts:edit_recipe' recipe.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'accounts:edit_recipe' recipe.id %}" class="btn btn-primary">{% translate "Edit" %}</a>
                     <form class="inline-form form-delete" method="POST" action="{% url 'accounts:delete_recipe' recipe.id %}">
                         {% csrf_token %}
-                        <button class="btn btn-danger" type="submit">Delete</button>
+                        <button class="btn btn-danger" type="submit">{% translate "Delete" %}</button>
                     </form>
                 </div>
             </li>
             <hr>
             {% empty %}
             <li>
-                <p>You have no recipe yet! But you can create one by clicking 
-                    <a href="{% url 'accounts:create_recipe' %}">here</a>!
+                <p>{% translate "You have no recipe yet! But you can create one by clicking" %} 
+                    <a href="{% url 'accounts:create_recipe' %}">{% translate "here" %}</a>!
                 </p>
             </li>
             {% endfor %}
         </ul>
 
-        <h3 class="mt-5">Want to change your profile informations? <a href="{% url 'accounts:edit_profile' profile.slug %}">Click here!</a></h3>
+        <h3 class="mt-5">{% translate "Want to change your profile informations?" %} <a href="{% url 'accounts:edit_profile' profile.slug %}">{% translate "Click here!" %}</a></h3>
     </div>
 </div>
 {% endblock content %}

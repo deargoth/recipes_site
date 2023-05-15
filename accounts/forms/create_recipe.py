@@ -1,6 +1,8 @@
 from django import forms
 from collections import defaultdict
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+
 
 from recipes.models import Recipe
 from utils.functions import add_attr, add_placeholder
@@ -13,16 +15,16 @@ class CreateRecipeForm(forms.ModelForm):
         self._my_errors = defaultdict(list)
 
         add_attr(self.fields['preparation_steps'], 'class', 'span-2')
-        add_placeholder(self.fields['title'], 'Type here your title')
+        add_placeholder(self.fields['title'], _('Type here your title'))
         add_placeholder(self.fields['description'],
-                        'Type here the description of the recipe')
+                        _('Type here the description of the recipe'))
         add_placeholder(self.fields['preparation_time'],
-                        'In minutes or hours, you choose!')
+                        _('In minutes or hours, you choose!'))
         add_placeholder(self.fields['servings'],
-                        'In people, portions or plates')
+                        _('In people, portions or plates'))
 
     slug = forms.SlugField(
-        help_text="If you don't want to set one, the slug is defined automatically if empty!",
+        help_text=("If you don't want to set one, the slug is defined automatically if empty!"),
         required=False,
     )
 
@@ -35,9 +37,9 @@ class CreateRecipeForm(forms.ModelForm):
         widgets = {
             'servings_unit': forms.Select(
                 choices=(
-                    ('People', 'People'),
-                    ('Portions', 'Portions'),
-                    ('Plates', 'Plates')
+                    (_('People'), _('People')),
+                    (_('Portions'), _('Portions')),
+                    (_('Plates'), _('Plates'))
                 ),
                 attrs={
                     'class': 'span-2'
@@ -45,8 +47,8 @@ class CreateRecipeForm(forms.ModelForm):
             ),
             'preparation_time_unit': forms.Select(
                 choices=(
-                    ('Minutos', 'Minutos'),
-                    ('Horas', 'Horas')
+                    (_('Minute(s)'), _('Minute(s)')),
+                    (_('Hour(s)'), _('Hour(s)'))
                 )
             ),
             'image': forms.FileInput(
@@ -66,24 +68,24 @@ class CreateRecipeForm(forms.ModelForm):
         if title:
             if len(title) < 6:
                 self._my_errors['title'].append(
-                    'Title must have at least 6 characters.')
+                    _('Title must have at least 6 characters.'))
 
         if description:
             if len(description) < 10:
                 self._my_errors['title'].append(
-                    'Description must have at least 10 characters.')
+                    _('Description must have at least 10 characters.'))
 
         if preparation_steps:
             if len(preparation_steps) < 20:
                 self._my_errors['title'].append(
-                    'The preparation steps must have at least 20 characters.')
+                    _('The preparation steps must have at least 20 characters.'))
 
         if title and description:
             if title == description:
                 self._my_errors['title'].append(
-                    'The title cannot be equal to description')
+                    _('The title cannot be equal to description'))
                 self._my_errors['description'].append(
-                    'The description cannot be equal to title')
+                    _('The description cannot be equal to title'))
 
         if self._my_errors:
             raise ValidationError(self._my_errors)

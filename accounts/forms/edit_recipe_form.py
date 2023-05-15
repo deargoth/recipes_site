@@ -1,7 +1,8 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from collections import defaultdict
+from django.utils.translation import gettext_lazy as _
 
+from collections import defaultdict
 
 from recipes.models import Recipe
 from utils.functions import add_attr
@@ -26,15 +27,15 @@ class EditRecipeForm(forms.ModelForm):
                     'class': 'span-2'
                 },
                 choices=(
-                    ('Porções', 'Porções'),
-                    ('Pessoas', 'Pessoas'),
-                    ('Pedaços', 'Pedaços'),
+                    (_('Portions'), _('Portions')),
+                    (_('People'), _('People')),
+                    (_('Pieces'), _('Pieces')),
                 )
             ),
             'preparation_time_unit': forms.Select(
                 choices=(
-                    ('Minutos', 'Minutos'),
-                    ('Horas', 'Horas'),
+                    (_('Minutes'), _('Minutes')),
+                    (_('Hours'), _('Hours')),
                 )
             ),
             'image': forms.FileInput(
@@ -55,21 +56,21 @@ class EditRecipeForm(forms.ModelForm):
 
         if len(title) < 6:
             self._my_errors['title'].append(
-                'Title must have at least 6 characters.')
+                _('Title must have at least 6 characters.'))
 
         if len(description) < 10:
             self._my_errors['title'].append(
-                'Description must have at least 10 characters.')
+                _('Description must have at least 10 characters.'))
 
         if title == description:
             self._my_errors['title'].append(
-                'The title cannot be equal to description')
+                _('The title cannot be equal to description'))
             self._my_errors['description'].append(
-                'The description cannot be equal to title')
+                _('The description cannot be equal to title'))
 
         if len(preparation_steps) < 20:
             self._my_errors['title'].append(
-                'The preparation steps must have at least 20 characters.')
+                _('The preparation steps must have at least 20 characters.'))
 
         if self._my_errors:
             raise ValidationError(self._my_errors)

@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
 
 from utils.functions import add_attr
 from accounts.models import Profile
@@ -9,11 +10,11 @@ User = get_user_model()
 
 class UserProfileForm(forms.ModelForm):
     first_name = forms.CharField(
-        error_messages={'invalid': 'The first name must not be empty'}
+        error_messages={'invalid': _('The first name must not be empty')}
     )
 
     last_name = forms.CharField(
-        error_messages={'invalid': 'This last name must not be empty'}
+        error_messages={'invalid': _('The last name must not be empty')}
     )
 
     class Meta:

@@ -1,11 +1,12 @@
-from django.views.generic import ListView, DetailView
-from django.shortcuts import render
+from django.utils import translation
 from django.db.models import Q, F, Value
 from django.db.models.functions import Concat
 from django.http import Http404, JsonResponse
-from decouple import config
 from django.forms.models import model_to_dict
-from django.utils import translation
+from django.utils.translation import gettext as _
+from django.views.generic import ListView, DetailView
+
+from decouple import config
 
 from .models import Recipe
 from tag.models import Tag
@@ -183,7 +184,7 @@ class Tags(Index):
         page_title = Tag.objects.get(slug=self.kwargs.get('slug', ''))
 
         if not page_title:
-            page_title = 'No recipes founded | '
+            page_title = _('No recipes founded | ')
 
         page_title = f'Tag "{page_title.name}" | '
 

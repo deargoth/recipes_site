@@ -1,8 +1,10 @@
+{% load i18n %}
+
 {% if page_obj %}
   <nav role="navigation" aria-label="Pagination" class="container pagination">
     <div class="pagination-content">
       {% if paginator_func.first_page_out_of_range %}
-        <a class="page-link page-item" aria-label="Go to page 1" href="?page=1{{ additional_url_query }}">First</a>
+        <a class="page-link page-item" aria-label="Go to page 1" href="?page=1{{ additional_url_query }}">{% translate "First" %}</a>
         <span class="page-item">...</span>
       {% endif %}
     
@@ -25,7 +27,7 @@
         <span class="page-item">...</span>
         <a class="page-link page-item"             
           aria-label="Go to last page" 
-          href="?page={{ paginator_func.total_pages }}{{ additional_url_query }}">Last
+          href="?page={{ paginator_func.total_pages }}{{ additional_url_query }}">{% translate "Last" %}
         </a>
       {% endif %}
     </div>
