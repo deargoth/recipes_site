@@ -1,23 +1,23 @@
 DJANGO_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
 ]
 
 PROJECT_APPS = [
-    'accounts',
-    'recipes',
-    'tag',
-
+    "accounts",
+    "recipes",
+    "tag",
 ]
 
 OTHER_APPS = [
-    'crispy_forms',
-    'crispy_bootstrap4',
-    'debug_toolbar',
+    "crispy_forms",
+    "crispy_bootstrap4",
+    "debug_toolbar",
 ]
 
 
