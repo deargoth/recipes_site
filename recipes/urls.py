@@ -23,10 +23,10 @@ api_urls = [
         name="details_api",
     ),
     # V2 - Using Django Rest
-    path("recipes/api/v2/", views.recipes_api_v2_list, name="index_api_v2"),
+    path("recipes/api/v2/", views.RecipeAPIv2List.as_view(), name="index_api_v2"),
     path(
         "recipes/details/api/v2/<int:pk>",
-        views.recipes_api_v2_details,
+        views.RecipeAPIv2Details.as_view(),
         name="details_api_v2",
     ),
 ]
