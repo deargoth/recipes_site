@@ -21,9 +21,11 @@ def recipe_image_delete(sender, instance, *args, **kwargs):
 
 @receiver(pre_save, sender=Recipe)
 def recipe_image_update(sender, instance, raw, *args, **kwargs):
-    old_instance = Recipe.objects.get(pk=instance.pk)
-    is_new_cover = old_instance.image != instance.image
+    old_instance = Recipe.objects.filter(pk=instance.pk).first()
 
-    if old_instance.image:
-        if is_new_cover:
-            delete_image(old_instance)
+    if old_instance:
+        is_new_cover = old_instance.image != instance.image
+
+        if old_instance.image:
+            if is_new_cover:
+                delete_image(old_instance)
