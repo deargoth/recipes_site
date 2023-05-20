@@ -1,8 +1,12 @@
-from django.urls import path
+from rest_framework.routers import SimpleRouter
+from .views import RecipeAPIv2Viewset
+from django.urls import path, include
 from . import views
 
 app_name = "recipes"
 
+recipes_api_v2_router = SimpleRouter()
+recipes_api_v2_router.register("recipes/api/v2", RecipeAPIv2Viewset, "recipes-api")
 
 views_urls = [
     path("", views.Index.as_view(), name="index"),
@@ -23,12 +27,7 @@ api_urls = [
         name="details_api",
     ),
     # V2 - Using Django Rest
-    path("recipes/api/v2/", views.RecipeAPIv2List.as_view(), name="index_api_v2"),
-    path(
-        "recipes/details/api/v2/<int:pk>",
-        views.RecipeAPIv2Details.as_view(),
-        name="details_api_v2",
-    ),
+    path("", include(recipes_api_v2_router.urls)),
 ]
 
 
