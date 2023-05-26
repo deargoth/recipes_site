@@ -20,41 +20,32 @@ class Category(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Category"
-        verbose_name_plural = "Categories"
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
 
 
 class Recipe(models.Model):
-    title = models.CharField(max_length=65, verbose_name=_("Title"))
-    description = models.CharField(max_length=255, verbose_name=_("Description"))
+    title = models.CharField(max_length=65, verbose_name=_('Title'))
+    description = models.CharField(max_length=255, verbose_name=_('Description'))
     slug = models.SlugField(null=True, blank=True)
-    preparation_time = models.PositiveIntegerField(verbose_name=_("Preparation time"))
-    preparation_time_unit = models.CharField(
-        max_length=65, verbose_name=_("Preparation time unit")
-    )
-    servings = models.PositiveIntegerField(verbose_name=_("Servings"))
-    servings_unit = models.CharField(max_length=65, verbose_name=_("Servings unit"))
-    preparation_steps = models.TextField(verbose_name=_("Preparation steps"))
-    preparation_steps_is_html = models.BooleanField(
-        default=False, verbose_name=_("Preparation steps is HTML")
-    )
+    preparation_time = models.PositiveIntegerField(verbose_name=_('Preparation time'))
+    preparation_time_unit = models.CharField(max_length=65, verbose_name=_('Preparation time unit'))
+    servings = models.PositiveIntegerField(verbose_name=_('Servings'))
+    servings_unit = models.CharField(max_length=65, verbose_name=_('Servings unit'))
+    preparation_steps = models.TextField(verbose_name=_('Preparation steps'))
+    preparation_steps_is_html = models.BooleanField(default=False, verbose_name=_('Preparation steps is HTML'))
     image = models.ImageField(
-        upload_to="pictures/%Y/%m/%d", blank=True, null=True, verbose_name=_("Image")
-    )
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created at"))
-    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated at"))
-    is_published = models.BooleanField(default=False, verbose_name=_("Is published"))
-    tags = models.ManyToManyField(Tag, blank=True)
+        upload_to='pictures/%Y/%m/%d', blank=True, null=True, verbose_name=_('Image'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created at'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Updated at'))
+    is_published = models.BooleanField(default=False, verbose_name=_('Is published'))
+    tags = models.ManyToManyField(Tag)
     author = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_("Autor")
-    )
+        User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('Autor'))
     category = models.ForeignKey(
-        Category,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
+        Category, on_delete=models.SET_NULL, null=True, blank=True,
         default=None,
-        verbose_name=_("Category"),
+        verbose_name=_('Category')
     )
 
     @staticmethod
@@ -79,12 +70,14 @@ class Recipe(models.Model):
     def clean(self):
         error_messages = defaultdict(list)
 
-        recipe_on_db = Recipe.objects.filter(title__iexact=self.title).first()
+        recipe_on_db = Recipe.objects.filter(
+            title__iexact=self.title
+        ).first()
 
         if recipe_on_db:
             if recipe_on_db.pk != self.pk:
-                error_messages["title"].append(
-                    site_messages.error["recipe_with_same_title"]
+                error_messages['title'].append(
+                    site_messages.error['recipe_with_same_title']
                 )
 
         if error_messages:
