@@ -1,7 +1,14 @@
-from rest_framework.routers import SimpleRouter
-from .views import RecipeAPIv2Viewset
 from django.urls import path, include
+
+from rest_framework.routers import SimpleRouter
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView,
+)
+
 from . import views
+from .views import RecipeAPIv2Viewset
 
 app_name = "recipes"
 
@@ -28,6 +35,13 @@ api_urls = [
     ),
     # V2 - Using Django Rest
     path("", include(recipes_api_v2_router.urls)),
+    path("recipes/api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path(
+        "recipes/api/token/refresh/",
+        TokenRefreshView.as_view(),
+        name="token_refresh",
+    ),
+    path("recipes/api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
 ]
 
 
